@@ -1,0 +1,101 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+}
+
+@font-face {
+    font-family: 'Dana-Regular';
+    src: url('../fonts/Dana-Regular.woff') format('woff'), url("../fonts/Dana-Regular.woff2") format("woff2"), url("../fonts/Dana-Regular.ttf") format("ttf");
+}
+
+.swagger-ui .info hgroup.main {
+    margin: 0 0 20px;
+    direction: rtl;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+}
+
+.swagger-ui .info .title {
+    font-family: "Dana-Regular";
+    direction: rtl;
+    text-align: right;
+    display: flex;
+    gap: 10px;
+}
+
+    .swagger-ui .info .title > span {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .swagger-ui .info .title small {
+        top: 0 !important;
+        padding: 5px 15px;
+    }
+
+.swagger-ui .markdown p, .swagger-ui .markdown pre, .swagger-ui .renderedMarkdown p, .swagger-ui .renderedMarkdown pre {
+    font-family: "Dana-Regular";
+    direction: rtl;
+    text-align: right;
+    margin-right: 15px;
+}
+
+.swagger-ui .markdown p, .swagger-ui .markdown pre, .swagger-ui .renderedMarkdown p, .swagger-ui .renderedMarkdown pre {
+    margin: 0 !important;
+}
+
+.swagger-ui .opblock .opblock-summary-description {
+    font-family: "Dana-Regular";
+    direction: rtl;
+    text-align: right;
+    margin-right: 15px;
+}
+
+img[alt="Swagger UI"] {
+    display: block;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    content: url('../images/logo.svg');
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.swagger-ui .scheme-container {
+    padding: 10px 0 !important;
+}
+
+.swagger-ui .info {
+    margin: 10px 0 !important;
+}
+
+.swagger-ui .topbar {
+    background-color: #aeaeae !important;
+}
+
+    .swagger-ui .topbar .download-url-wrapper .select-label select {
+        border: 2px solid #a2a2a2 !important;
+    }
+
+    .swagger-ui .topbar .download-url-wrapper {
+        display: flex;
+        white-space: nowrap;
+        justify-content: left;
+        flex: unset !important;
+    }
+
+    .swagger-ui .topbar .topbar-wrapper, .swagger-ui .topbar a {
+        align-items: center;
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .swagger-ui .topbar .download-url-wrapper .select-label span {
+        display: none;
+    }

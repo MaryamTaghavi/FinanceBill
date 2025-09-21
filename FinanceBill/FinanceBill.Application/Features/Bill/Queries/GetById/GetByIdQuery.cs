@@ -3,6 +3,4 @@ using MediatR;
 
 namespace FinanceBill.Application.Features.Bill.Queries.GetById;
 
-public class GetByIdQuery : IRequest<GetBillByIdViewModel>
-{
-}
+public class GetByIdQuery(int Id) : IRequest<GetBillByIdViewModel>;
