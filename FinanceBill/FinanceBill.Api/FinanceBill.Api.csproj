@@ -15,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\FinanceBill.Application\FinanceBill.Application.csproj" />
     <ProjectReference Include="..\FinanceBill.Domain\FinanceBill.Domain.csproj" />
+    <ProjectReference Include="..\FinanceBill.Infrastructure\FinanceBill.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

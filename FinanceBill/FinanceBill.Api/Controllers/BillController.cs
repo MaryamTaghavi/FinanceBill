@@ -18,15 +18,13 @@ public class BillController : ControllerBase
     /// صورت حساب
     /// </summary>
     /// <param name="sender"></param>
-    public BillController(IMediator sender)
-    {
-        _sender = sender;
-    }
+    public BillController(IMediator sender) => _sender = sender;
 
     /// <summary>
     /// درج صورت حساب
     /// </summary>
     /// <param name="viewModel"></param>
+    /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpPost]
     [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
@@ -40,6 +38,7 @@ public class BillController : ControllerBase
     /// دریافت صورت حساب
     /// </summary>
     /// <param name="id"></param>
+    /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpGet("id:int")]
     [ProducesResponseType(typeof(GetBillByIdViewModel), StatusCodes.Status200OK)]
@@ -53,6 +52,7 @@ public class BillController : ControllerBase
     /// ویرایش صورت حساب
     /// </summary>
     /// <param name="viewModel"></param>
+    /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpPut]
     [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
@@ -66,6 +66,7 @@ public class BillController : ControllerBase
     /// حذف صورت حساب
     /// </summary>
     /// <param name="id"></param>
+    /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpDelete]
     [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
