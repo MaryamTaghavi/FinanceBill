@@ -4,6 +4,6 @@ public record GetBillByIdViewModel
 (
     int Id,
     string Name,
-    string Description,
+    string? Description,
     double Price
 );
