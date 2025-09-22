@@ -1,9 +1,12 @@
-using FinanceBill.Application.Features.Bill.Commands.CreateBill;
+﻿using FinanceBill.Application.Features.Bill.Queries.GetById;
 using FinanceBill.Application.Interfaces;
 using FinanceBill.Infrastructure;
 using FinanceBill.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using FluentValidation;
+using MediatR;
+using FinanceBill.Api.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,10 +24,17 @@ builder.Services.AddSwaggerGen(c =>
     var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 });
-builder.Services.AddScoped<IBillService , BillService>();
+builder.Services.AddScoped<IBillService, BillService>();
 
 builder.Services.AddMediatR(cfg =>
-    cfg.RegisterServicesFromAssembly(typeof(CreateBillCommandHandler).Assembly));
+{
+    cfg.RegisterServicesFromAssembly(typeof(GetByIdQuery).Assembly);
+});
+
+builder.Services.AddValidatorsFromAssemblyContaining<GetByIdValidator>();
+
+builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviorPipeline<,>));
+
 
 var app = builder.Build();
 
@@ -36,6 +46,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseMiddleware<ValidationExceptionMiddleware>();
 
 app.UseAuthorization();
 
