@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FinanceBill.Application.Interfaces;
+using MediatR;
 
-namespace FinanceBill.Application.Features.Bill.Commands.DeleteBill
+namespace FinanceBill.Application.Features.Bill.Commands.DeleteBill;
+
+public class DeleteBillCommandHandler : IRequestHandler<DeleteBillCommand, bool>
 {
-    internal class DeleteBillCommandHandler
+    private readonly IBillService _billService;
+
+    public DeleteBillCommandHandler(IBillService billService) => _billService = billService;
+
+    public async Task<bool> Handle(DeleteBillCommand command, CancellationToken cancellationToken)
     {
+        return await _billService.DeleteAsync(command.Id, cancellationToken);
     }
 }
