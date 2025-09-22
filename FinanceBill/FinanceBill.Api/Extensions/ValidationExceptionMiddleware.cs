@@ -1,5 +1,8 @@
 ﻿namespace FinanceBill.Api.Extensions;
 
+/// <summary>
+/// مدیریت پیغام های خطا
+/// </summary>
 public class ValidationExceptionMiddleware
 {
     private readonly RequestDelegate _next;

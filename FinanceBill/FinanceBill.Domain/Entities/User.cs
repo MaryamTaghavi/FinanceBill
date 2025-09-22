@@ -2,7 +2,10 @@
 
 namespace FinanceBill.Domain.Entities;
 
-public class Bill
+/// <summary>
+/// کاربر
+/// </summary>
+public class User
 {
     /// <summary>
     /// شناسه
@@ -10,27 +13,12 @@ public class Bill
     [Key]
     public int Id { get; set; }
 
-    public int UserId { get; set; }
-
     /// <summary>
     /// نام
     /// </summary>
-    [MaxLength(30)]
+    [MaxLength(15)]
     [Required]
     public string Name { get; set; }
-
-    /// <summary>
-    /// توضیحات
-    /// </summary>
-    [MaxLength(30)]
-    public string? Description { get; set; }
-
-    /// <summary>
-    /// مبلغ
-    /// </summary>
-    [Required]
-    [Range(1000, 100000000, ErrorMessage = "باید بین 1000 و 100000000 باشد")]
-    public double Price { get; set; }
 
     /// <summary>
     /// ایجاد شده در
@@ -44,7 +32,8 @@ public class Bill
     public DateTime? UpdatedAt { get; set; }
 
     #region Navigation Property
-    public virtual User User { get; set; }
+    public Bill Bill { get; set; }
 
     #endregion
+
 }

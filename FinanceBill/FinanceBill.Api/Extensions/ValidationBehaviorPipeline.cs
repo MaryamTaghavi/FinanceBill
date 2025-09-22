@@ -3,6 +3,11 @@ using MediatR;
 
 namespace FinanceBill.Api.Extensions;
 
+/// <summary>
+/// مدیریت ولیدیشن ها
+/// </summary>
+/// <typeparam name="TRequest"></typeparam>
+/// <typeparam name="TResponse"></typeparam>
 public class ValidationBehaviorPipeline<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>
 {
@@ -33,7 +38,6 @@ public class ValidationBehaviorPipeline<TRequest, TResponse> : IPipelineBehavior
                 var messages = failures.Select(f => f.ErrorMessage);
                 var combinedMessage = string.Join("; ", messages);
 
-                // پرتاب ValidationException با پیام قابل فهم
                 throw new ValidationException($"Validation failed: {combinedMessage}", failures);
             }
         }
