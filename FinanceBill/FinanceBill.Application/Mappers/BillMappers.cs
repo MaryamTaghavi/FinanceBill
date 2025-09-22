@@ -5,7 +5,7 @@ namespace FinanceBill.Application.Mappers;
 
 public static class BillMappers
 {
-    private static Bill ToAddBill(this CreateBillViewModel viewModel)
+    public static Bill ToAddBill(this CreateBillViewModel viewModel)
     {
         return new Bill()
         {
@@ -16,7 +16,7 @@ public static class BillMappers
         };
     }
 
-    private static Bill ToUpdateBill(this UpdateBillViewModel viewModel, Bill bill)
+    public static Bill ToUpdateBill(this UpdateBillViewModel viewModel, Bill bill)
     {
         bill.UpdatedAt = DateTime.Now;
         bill.Description = viewModel.Description;

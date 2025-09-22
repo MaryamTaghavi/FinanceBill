@@ -8,13 +8,10 @@ public class GetByIdQueryHandler : IRequestHandler<GetByIdQuery, GetBillByIdView
 {
     private readonly IBillService _billService;
 
-    public GetByIdQueryHandler(IBillService billService)
-    {
-        _billService = billService;
-    }
+    public GetByIdQueryHandler(IBillService billService) => _billService = billService;
 
-    public async Task<GetBillByIdViewModel> Handle(GetByIdQuery query, CancellationToken cancellationToken)
+    public async Task<GetBillByIdViewModel?> Handle(GetByIdQuery query, CancellationToken cancellationToken)
     {
-        return null;
+        return await _billService.GetByIdAsync(query.Id , cancellationToken);
     }
 }

@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FinanceBill.Application.Interfaces;
+using MediatR;
 
-namespace FinanceBill.Application.Features.Bill.Commands.UpdateBill
+namespace FinanceBill.Application.Features.Bill.Commands.UpdateBill;
+
+internal class UpdateBillCommandHandler : IRequestHandler<UpdateBillCommand, bool>
 {
-    internal class UpdateBillCommandHandler
+    private readonly IBillService _billService;
+
+    public UpdateBillCommandHandler(IBillService billService) => _billService = billService;
+
+    public async Task<bool> Handle(UpdateBillCommand command, CancellationToken cancellationToken)
     {
+        return await _billService.UpdateAsync(command.viewModel, cancellationToken);
     }
 }

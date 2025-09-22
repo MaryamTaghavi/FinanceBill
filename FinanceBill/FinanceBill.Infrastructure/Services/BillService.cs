@@ -1,8 +1,7 @@
 ﻿using FinanceBill.Application.Interfaces;
-using FinanceBill.Domain.Entities;
+using FinanceBill.Application.Mappers;
 using FinanceBill.Domain.ViewModels;
 using Microsoft.EntityFrameworkCore;
-using FinanceBill.Application.Mappers;
 
 namespace FinanceBill.Infrastructure.Services;
 
@@ -12,11 +11,13 @@ public class BillService : IBillService
 
     public BillService(AppDbContext context) => _context = context;
 
-    public async Task<bool> AddAsync(Bill bill , CancellationToken cancellationToken)
+    public async Task<bool> AddAsync(CreateBillViewModel viewModel, CancellationToken cancellationToken)
     {
         try
         {
-            await _context.Bills.AddAsync(bill, cancellationToken);
+            var result = viewModel.ToAddBill();
+
+            await _context.Bills.AddAsync(result, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);
 
             return true;
@@ -44,7 +45,7 @@ public class BillService : IBillService
         {
             return false;
         }
-        
+
     }
 
     public async Task<GetBillByIdViewModel?> GetByIdAsync(int id, CancellationToken cancellationToken)
@@ -62,17 +63,20 @@ public class BillService : IBillService
         }
     }
 
-    public async Task<bool> UpdateAsync(Bill bill, CancellationToken cancellationToken)
+    public async Task<bool> UpdateAsync(UpdateBillViewModel viewModel, CancellationToken cancellationToken)
     {
-        try
+        var bill = await _context.Bills.AsNoTracking().SingleOrDefaultAsync(r => r.Id == viewModel.Id, cancellationToken);
+
+        if (bill != null)
         {
-            _context.Bills.Update(bill);
+            var result = viewModel.ToUpdateBill(bill);
+
+            _context.Bills.Update(result);
             await _context.SaveChangesAsync(cancellationToken);
 
             return true;
         }
-
-        catch
+        else
         {
             return false;
         }
