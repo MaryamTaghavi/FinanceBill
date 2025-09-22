@@ -1,7 +1,6 @@
-using FinanceBill.Application.Features.Bill.Commands.CreateBill;
 using FluentValidation;
 
-namespace CarInquiry.Application.Features.BaseInfo.Commands.CreateCardDocumentVehicleStatus; 
+namespace FinanceBill.Application.Features.Bill.Commands.CreateBill;
 
 public class CreateBillValidator : AbstractValidator<CreateBillCommand>
 {
@@ -12,6 +11,6 @@ public class CreateBillValidator : AbstractValidator<CreateBillCommand>
             .MaximumLength(20).WithMessage("عنوان باید حداکثر 20 کاراکتر باشد");
 
         RuleFor(s => s.viewModel.Price)
-           .GreaterThan(0).WithMessage("قیمت را وارد کنید");
+           .GreaterThan(0).LessThan(100000000).WithMessage("قیمت را وارد کنید");
     }
 }

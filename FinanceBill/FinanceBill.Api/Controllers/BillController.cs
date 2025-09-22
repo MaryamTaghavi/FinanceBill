@@ -40,7 +40,7 @@ public class BillController : ControllerBase
     /// <param name="id"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    [HttpGet("id:int")]
+    [HttpGet]
     [ProducesResponseType(typeof(GetBillByIdViewModel), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetById(int id, CancellationToken cancellationToken)
     {

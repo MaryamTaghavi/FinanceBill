@@ -3,7 +3,7 @@ using MediatR;
 
 namespace FinanceBill.Application.Features.Bill.Commands.UpdateBill;
 
-internal class UpdateBillCommandHandler : IRequestHandler<UpdateBillCommand, bool>
+public class UpdateBillCommandHandler : IRequestHandler<UpdateBillCommand, bool>
 {
     private readonly IBillService _billService;
 
