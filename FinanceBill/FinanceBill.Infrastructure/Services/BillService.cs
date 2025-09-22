@@ -1,6 +1,8 @@
 ﻿using FinanceBill.Application.Interfaces;
 using FinanceBill.Domain.Entities;
 using FinanceBill.Domain.ViewModels;
+using Microsoft.EntityFrameworkCore;
+using FinanceBill.Application.Mappers;
 
 namespace FinanceBill.Infrastructure.Services;
 
@@ -8,10 +10,7 @@ public class BillService : IBillService
 {
     private readonly AppDbContext _context;
 
-    public BillService(AppDbContext context)
-    {
-        _context = context;
-    }
+    public BillService(AppDbContext context) => _context = context;
 
     public async Task<bool> AddAsync(Bill bill , CancellationToken cancellationToken)
     {
@@ -29,14 +28,38 @@ public class BillService : IBillService
         }
     }
 
-    public Task<bool> DeleteAsync()
+    public async Task<bool> DeleteAsync(int id, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var bill = await _context.Bills.AsNoTracking().SingleOrDefaultAsync(r => r.Id == id, cancellationToken);
+
+        if (bill != null)
+        {
+            _context.Bills.Remove(bill);
+            await _context.SaveChangesAsync(cancellationToken);
+
+            return true;
+        }
+
+        else
+        {
+            return false;
+        }
+        
     }
 
-    public Task<GetBillByIdViewModel> GetByIdAsync()
+    public async Task<GetBillByIdViewModel?> GetByIdAsync(int id, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var bill = await _context.Bills.AsNoTracking().SingleOrDefaultAsync(r => r.Id == id, cancellationToken);
+
+        if (bill != null)
+        {
+            return bill.ToGetById();
+        }
+
+        else
+        {
+            return null;
+        }
     }
 
     public async Task<bool> UpdateAsync(Bill bill, CancellationToken cancellationToken)

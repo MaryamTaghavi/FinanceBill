@@ -7,6 +7,6 @@ public interface IBillService
 {
     Task<bool> AddAsync(Bill bill, CancellationToken cancellationToken);
     Task<bool> UpdateAsync(Bill bill, CancellationToken cancellationToken);
-    Task<bool> DeleteAsync();
-    Task<GetBillByIdViewModel> GetByIdAsync();
+    Task<bool> DeleteAsync(int id, CancellationToken cancellationToken);
+    Task<GetBillByIdViewModel?> GetByIdAsync(int id, CancellationToken cancellationToken);
 }

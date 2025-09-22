@@ -26,7 +26,7 @@ public static class BillMappers
         return bill;
     }
 
-    private static GetBillByIdViewModel ToGetById(this Bill bill) =>
+    public static GetBillByIdViewModel ToGetById(this Bill bill) =>
          new(
              bill.Id,
              bill.Name,
