@@ -4,6 +4,7 @@ using FinanceBill.Application.Features.Bill.Commands.UpdateBill;
 using FinanceBill.Application.Features.Bill.Queries.GetById;
 using FinanceBill.Domain.ViewModels;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinanceBill.Api.Controllers;
@@ -13,6 +14,7 @@ namespace FinanceBill.Api.Controllers;
 /// </summary>
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class BillController : ControllerBase
 {
     private readonly IMediator _sender;

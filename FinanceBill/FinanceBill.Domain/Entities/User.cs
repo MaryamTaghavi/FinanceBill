@@ -21,6 +21,13 @@ public class User
     public string Name { get; set; }
 
     /// <summary>
+    /// پسورد
+    /// </summary>
+    [MaxLength(15)]
+    [Required]
+    public string Password { get; set; }
+
+    /// <summary>
     /// ایجاد شده در
     /// </summary>
     [Required]
