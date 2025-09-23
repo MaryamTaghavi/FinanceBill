@@ -2,6 +2,7 @@
 using FinanceBill.Application.Mappers;
 using FinanceBill.Domain.ViewModels;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Serilog;
 
 namespace FinanceBill.Infrastructure.Services;
@@ -9,8 +10,13 @@ namespace FinanceBill.Infrastructure.Services;
 public class BillService : IBillService
 {
     private readonly AppDbContext _context;
+    private readonly ILogger<BillService> _logger;
 
-    public BillService(AppDbContext context) => _context = context;
+    public BillService(AppDbContext context , ILogger<BillService> logger)
+    {
+        _context = context;
+        _logger = logger;
+    }
 
     public async Task<bool> AddAsync(CreateBillViewModel viewModel, CancellationToken cancellationToken)
     {
@@ -26,7 +32,8 @@ public class BillService : IBillService
 
         catch(Exception ex)
         {
-            Log.Error(ex, "An unexpected error occurred");
+            _logger.LogError(ex, "An unexpected error occurred");
+            //Log.Error(ex, "An unexpected error occurred");
             return false;
         }
     }
@@ -45,7 +52,8 @@ public class BillService : IBillService
 
         else
         {
-            Log.Error("{id} is null" , id);
+            //Log.Error("{id} is null" , id);
+            _logger.LogError("{id} is null", id);
             return false;
         }
 
@@ -62,7 +70,9 @@ public class BillService : IBillService
 
         else
         {
-            Log.Error("{id} is null", id);
+           // Log.Error("{id} is null", id);
+           // از طریق ILogger, coupled با serilog از بین میرود.
+            _logger.LogError("{id} is null", id);
             return null;
         }
     }
@@ -83,7 +93,8 @@ public class BillService : IBillService
 
         else
         {
-            Log.Error("{@bill} is null" , viewModel);
+            _logger.LogError("{@bill} is null", viewModel);
+            //Log.Error("{@bill} is null" , viewModel);
             return false;
         }
     }
