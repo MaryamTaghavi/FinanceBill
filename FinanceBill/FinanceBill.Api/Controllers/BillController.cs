@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FinanceBill.Api.Controllers;
 
+/// <summary>
+/// Bill Controler
+/// </summary>
 [Route("api/[controller]")]
 [ApiController]
 public class BillController : ControllerBase
