@@ -7,8 +7,12 @@ using System.Reflection;
 using FluentValidation;
 using MediatR;
 using FinanceBill.Api.Extensions;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.UseSerilog((context, configuration) =>
+        configuration.ReadFrom.Configuration(context.Configuration));
 
 // Add services to the container.
 
@@ -35,7 +39,6 @@ builder.Services.AddValidatorsFromAssemblyContaining<GetByIdValidator>();
 
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviorPipeline<,>));
 
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -46,6 +49,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseSerilogRequestLogging();
 
 app.UseMiddleware<ValidationExceptionMiddleware>();
 
