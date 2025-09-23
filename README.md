@@ -73,3 +73,15 @@ logger.LogError(ex, "Error while saving order {OrderId}", order.Id);
 📌 مثال:
 
 logger.LogCritical("Database unavailable. Application shutting down.");
+
+# Serilog Property
+دو ویژگی عمده آن استفاده از @ و placeholder {} برای نگهداری لاگ است.
+
+logger.LogInformation("Shipment for order '{OrderId}' is already created", request.OrderId);
+
+logger.LogInformation("Created shipment: {@Shipment}", shipment);
+
+@ قبل از نام متغیر سبب selialize کردن آبجکت میشود، در serilog نباید از string interpolation استفاده کرد، چون به صورت یک متن ساده بدون اطلاعات اضافی ذخیره میشود.
+سری لاگ اجازه ذخیره دیتا به صورت key-value به جای plain-text میدهد.
+
+
