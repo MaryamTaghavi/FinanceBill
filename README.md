@@ -1,7 +1,7 @@
 # Logging Level
 
-1. Trace
-
+1. تریس (Trace)
+2. 
 خیلی خیلی ریز و پرجزئیات.
 
 معمولاً شامل اطلاعاتی مثل مقدار متغیرها، ورودی و خروجی توابع و مسیر دقیق اجرای کد.
@@ -12,8 +12,8 @@
 
 logger.LogTrace("Starting method GetUser with parameter id={Id}", id);
 
-2. Debug
-
+2. دیباگ (Debug)
+3. 
 برای اشکال‌زدایی (Debugging) استفاده می‌شه.
 
 اطلاعات کلی‌تر نسبت به Trace می‌ده، اما هنوز بیشتر به درد توسعه‌دهنده می‌خوره تا کاربر یا مدیر سیستم.
@@ -24,7 +24,7 @@ logger.LogTrace("Starting method GetUser with parameter id={Id}", id);
 
 logger.LogDebug("Query executed in {ElapsedMilliseconds} ms", stopwatch.ElapsedMilliseconds);
 
-3. Information
+3. اطلاعات (Information)
 
 برای رخدادهای عادی و جریان کلی برنامه استفاده می‌شه.
 
@@ -36,7 +36,7 @@ logger.LogDebug("Query executed in {ElapsedMilliseconds} ms", stopwatch.ElapsedM
 
 logger.LogInformation("User {UserId} logged in successfully", userId);
 
-4. Warning
+4. اخطار (Warning)
 
 وقتی اتفاقی غیرعادی میفته ولی هنوز برنامه متوقف نشده.
 
@@ -46,7 +46,7 @@ logger.LogInformation("User {UserId} logged in successfully", userId);
 
 logger.LogWarning("Payment took unusually long: {Duration} ms", duration);
 
-5. Error
+5. خطا (Error)
 
 وقتی یه خطای واقعی رخ داده که باعث شده روند فعلی متوقف بشه.
 
@@ -58,7 +58,7 @@ logger.LogWarning("Payment took unusually long: {Duration} ms", duration);
 
 logger.LogError(ex, "Error while saving order {OrderId}", order.Id);
 
-6. Critical
+6. بحرانی (Critical)
 
 جدی‌ترین سطح لاگ.
 
