@@ -2,6 +2,7 @@
 using FinanceBill.Application.Mappers;
 using FinanceBill.Domain.ViewModels;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 
 namespace FinanceBill.Infrastructure.Services;
 
@@ -23,8 +24,9 @@ public class BillService : IBillService
             return true;
         }
 
-        catch
+        catch(Exception ex)
         {
+            Log.Error(ex, "An unexpected error occurred");
             return false;
         }
     }
@@ -43,6 +45,7 @@ public class BillService : IBillService
 
         else
         {
+            Log.Error("{id} is null" , id);
             return false;
         }
 
@@ -59,6 +62,7 @@ public class BillService : IBillService
 
         else
         {
+            Log.Error("{id} is null", id);
             return null;
         }
     }
@@ -79,6 +83,7 @@ public class BillService : IBillService
 
         else
         {
+            Log.Error("{@bill} is null" , viewModel);
             return false;
         }
     }
