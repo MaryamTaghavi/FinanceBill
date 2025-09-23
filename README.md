@@ -24,6 +24,7 @@ logger.LogTrace("Starting method GetUser with parameter id={Id}", id);
 
 logger.LogDebug("Query executed in {ElapsedMilliseconds} ms", stopwatch.ElapsedMilliseconds);
 
+
 3. اطلاعات (Information)
 
 برای رخدادهای عادی و جریان کلی برنامه استفاده می‌شه.
@@ -36,6 +37,7 @@ logger.LogDebug("Query executed in {ElapsedMilliseconds} ms", stopwatch.ElapsedM
 
 logger.LogInformation("User {UserId} logged in successfully", userId);
 
+
 4. اخطار (Warning)
 
 وقتی اتفاقی غیرعادی میفته ولی هنوز برنامه متوقف نشده.
@@ -45,6 +47,7 @@ logger.LogInformation("User {UserId} logged in successfully", userId);
 📌 مثال:
 
 logger.LogWarning("Payment took unusually long: {Duration} ms", duration);
+
 
 5. خطا (Error)
 
@@ -57,6 +60,7 @@ logger.LogWarning("Payment took unusually long: {Duration} ms", duration);
 📌 مثال:
 
 logger.LogError(ex, "Error while saving order {OrderId}", order.Id);
+
 
 6. بحرانی (Critical)
 
