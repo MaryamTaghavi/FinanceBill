@@ -24,7 +24,7 @@ public class AuthService : IAuthService
         _logger = logger;
     }
 
-    public async Task<LoginViewModel?> LoginWithPasswordAsync(LoginRequest login, CancellationToken cancellationToken)
+    public async Task<LoginViewModel?> LoginWithPasswordAsync(string Name, string Password, CancellationToken cancellationToken)
     {
         //var user = await _context.Users.FirstOrDefaultAsync(r => r.Name == login.UserName && r.Password == login.Password, cancellationToken);
 

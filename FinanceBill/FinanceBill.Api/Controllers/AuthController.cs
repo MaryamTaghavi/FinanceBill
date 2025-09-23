@@ -1,5 +1,6 @@
-﻿using FinanceBill.Application.Interfaces;
+﻿using FinanceBill.Application.Features.Auth.Queries.LoginWithPassword;
 using FinanceBill.Domain.ViewModels;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,9 +13,9 @@ namespace SecureUserManagement.Controllers;
 [ApiController]
 public class AuthController : ControllerBase
 {
-    private IAuthService _authService;
+    private readonly IMediator _sender;
 
-    public AuthController(IAuthService authService) => _authService = authService;
+    public AuthController(IMediator sender) => _sender = sender;
 
     /// <summary>
     /// لاگین با پسورد
@@ -23,16 +24,17 @@ public class AuthController : ControllerBase
     /// User : Test ***
     /// Password : 123
     /// </remarks>
-    /// <param name="login"></param>
+    /// <param name="Name"></param>
+    /// <param name="Password"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpPost("LoginWithPassword")]
     [AllowAnonymous]
     [ProducesResponseType(typeof(LoginViewModel), StatusCodes.Status200OK)]
 
-    public async Task<IActionResult> LoginWithPassword([FromBody] LoginRequest login, CancellationToken cancellationToken)
+    public async Task<IActionResult> LoginWithPassword(string Name , string Password, CancellationToken cancellationToken)
     {
-        var result = await _authService.LoginWithPasswordAsync(login, cancellationToken);
+        var result = await _sender.Send(new LoginWithPasswordQuery(Name , Password), cancellationToken);
         return Ok(result);
     }
 }

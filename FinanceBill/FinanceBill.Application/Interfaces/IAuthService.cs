@@ -4,5 +4,5 @@ namespace FinanceBill.Application.Interfaces;
 
 public interface IAuthService
 {
-    Task<LoginViewModel?> LoginWithPasswordAsync(LoginRequest login , CancellationToken cancellationToken);
+    Task<LoginViewModel> LoginWithPasswordAsync(string Name , string Password , CancellationToken cancellationToken);
 }
