@@ -18,9 +18,11 @@ public class AuthController : ControllerBase
 
     /// <summary>
     /// لاگین با پسورد
-    /// User : Test
-    /// Password : 123
     /// </summary>
+    /// <remarks>
+    /// User : Test ***
+    /// Password : 123
+    /// </remarks>
     /// <param name="login"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
